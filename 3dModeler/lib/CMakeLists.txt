@@ -1,5 +1,5 @@
 # The extension is already found. Any number of sources could be listed here.
-add_library (lib solid.cpp)
+add_library (lib Solid.cpp Point3D.cpp)
 
 # Make sure the compiler can find include files for our Hello library
 # when other libraries or executables link to Hello
