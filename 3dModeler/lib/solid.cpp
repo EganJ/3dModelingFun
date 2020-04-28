@@ -1,4 +1,8 @@
 #include "solid.hpp"
+#include "vectors/Vector3D.hpp"
+#include "Vector3D.hpp"
+#include "Vector.hpp"
+#include "vectors.hpp"
 using std::endl;
 /* Creates a new solid object.
 *
@@ -10,11 +14,15 @@ Solid::Solid(std::string name, std::string savepath) : solidName(name), document
 	document << "solid " << solidName << endl;
 }
 
-void Solid::addFacet(Point3D point1, Point3D point2, Point3D point3) {
-	document << "facet normal 0 0 0\n\touter loop\n";
-	document << "\t\tvertex " << point1.getX() << " " << point1.getY() << " " << point1.getZ() << "\n";
-	document << "\t\tvertex " << point2.getX() << " " << point2.getY() << " " << point2.getZ() << "\n";
-	document << "\t\tvertex " << point3.getX() << " " << point3.getY() << " " << point3.getZ() << "\n";
+void Solid::addFacet(Vector3D point1, Vector3D point2, Vector3D point3) {
+	Vector3D difference1 = point2.subtract(point1); //translate to vectors relative to point 1
+	Vector3D difference2 = point3.subtract(point1);
+	Vector3D normal = difference1.cross(difference2); // find orthagonal vector
+	normal.scale(1 / normal.getMagnitude()); // transform to unit vector
+	document << "facet normal " << normal.str() << "\n\touter loop\n";
+	document << "\t\tvertex " << point1.str() << "\n";
+	document << "\t\tvertex " << point2.str() << "\n";
+	document << "\t\tvertex " << point3.str() << "\n";
 	document << "\tendloop\nendfacet";
 	document << endl;
 }
