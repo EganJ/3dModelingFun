@@ -1,8 +1,7 @@
-# Add executable called "helloDemo" that is built from the source files
-# "demo.cxx" and "demo_b.cxx". The extensions are automatically found.
-add_executable (ModelTest Entry.cpp)
+# More than one executable can be added, but make sure to give it a unique name and link thet library
+add_executable (ConeTest cone.cpp )
+target_link_libraries (ConeTest LINK_PUBLIC lib)
 
-# Link the executable to the Hello library. Since the Hello library has
-# public include directories we will use those link directories when building
-# helloDemo
-target_link_libraries (ModelTest LINK_PUBLIC lib)
+# More than one executable can be added, but make sure to give it a unique name and link thet library
+add_executable (SphereTest sphere.cpp)
+target_link_libraries (SphereTest LINK_PUBLIC lib)

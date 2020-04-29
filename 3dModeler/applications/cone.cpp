@@ -7,8 +7,8 @@
 using namespace vector;
 
 int main() {
-	Solid solid{ "cone", "object.stl" };
-	const int sides{ 1 };
+	Solid solid{ "cone", "C:\\Users\\egcoj\\3D Objects\\Generated\\cone.stl" };
+	const int sides{ 14 };
 	const double rot{ 2 * PI / sides };
 	double c = cos(rot);
 	std::cout << "Cos: " << c << std::endl;
